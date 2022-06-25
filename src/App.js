@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
 import LoginForm from './components/login.component'
 
+//create function to handle login form
 function App() {
+  //declare state for user and error
   const [user, setUser] = useState({name: '', email: '', password: ''});
   const [error, setError] = useState('');
 
+  //time to create function for validation of email
   let regex = new RegExp('[A-Za-z0-9]+@[A-Za-z0-9]+.com');
 
+  const useEmailValidation = (email) => {
+    const isEmailValid = regex.test(email); // use any validator you want
+    return isEmailValid;
+  };
+
+  //create function for login
   const Login = details => {
     console.log(details);
-    if (regex.test(details.email)) {
+    if (useEmailValidation(details.email)) {
       console.log('Login Successful');
       setUser({
         name: details.name,
@@ -20,11 +29,14 @@ function App() {
       setError('Invalid email format');
     }
   }
-
+  
+  //create function for logout
   const Logout = () => {
     setUser({name: '', email: '', password: ''});
     console.log('logged out');
   }
+
+  //write html code with react function
   return(
     <div className="App">
       {(user.email !== "") ? (
@@ -38,4 +50,5 @@ function App() {
     </div>
   );
 }
+
 export default App

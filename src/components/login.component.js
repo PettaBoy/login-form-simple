@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+//handle login
 function LoginForm({ Login, error }) {
   const [user, setUser] = useState({ name: "", email: "", password: "" })
   const submitHandler = (e) => {
@@ -7,6 +8,7 @@ function LoginForm({ Login, error }) {
     Login(user)
   }
 
+  //create login form
   return(
     <form onSubmit={submitHandler}>
       <div className="form-inner">
